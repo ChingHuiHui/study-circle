@@ -19,3 +19,6 @@ Route::get('/', [EventController::class, 'index'])->name('events');
 Route::get('/events/create', [EventController::class, 'create']);
 Route::get('/events/{event:id}', [EventController::class, 'show']);
 Route::post('/events', [EventController::class, 'store']);
+Route::get('/events/{event:id}/edit', [EventController::class, 'edit']);
+Route::delete('/events/{event:id}', [EventController::class, 'destroy']);
+Route::patch('/events/{event:id}', [EventController::class, 'update']);

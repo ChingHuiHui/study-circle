@@ -6,11 +6,39 @@
     @apply border border-gray-200 p-2 w-full;
 }
 
+.form-label {
+    @apply block mb-2 uppercase font-bold text-xs text-gray-700;
+}
+
 .btn {
-    @apply px-2 py-3 rounded-lg;
+    @apply px-2 py-3 rounded-lg text-center;
+    @apply transition-colors duration-300 cursor-pointer;
 }
 
 .btn-primary {
     @apply bg-primary hover:bg-primary-dark;
-    @apply transition-colors duration-300;
+}
+
+.btn-danger {
+    @apply text-white bg-red-500 hover:bg-red-600;
+}
+
+.alert {
+    @apply fixed bottom-3 right-3 text-white py-2 px-4 rounded-xl text-lg;
+}
+
+.alert-success {
+    @apply bg-green-600;
+}
+
+.alert-danger {
+    @apply bg-red-600;
+}
+
+.alert-info {
+    @apply bg-blue-600;
+}
+
+.alert-warning {
+    @apply bg-yellow-600;
 }

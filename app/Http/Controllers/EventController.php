@@ -53,7 +53,7 @@ class EventController extends Controller
             'note' => request()->note,
         ]));
 
-        return redirect('/');
+        return redirect('/')->with('alert-success', '新增成功');
     }
 
     /**
@@ -78,7 +78,7 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        return view('events.edit', ['event' => $event]);
     }
 
     /**
@@ -88,9 +88,22 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEventRequest $request, Event $event)
+    public function update(Event $event)
     {
-        //
+
+        $attributes = request()->validate([
+            'title' => 'required',
+            'date' => 'required',
+        ]);
+
+
+        $event->update(array_merge([
+            'department_id' => request()->department,
+            'body' => request()->body,
+            'note' => request()->note,
+        ]));
+
+        return redirect('/');
     }
 
     /**
@@ -101,6 +114,8 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $event->delete();
+
+        return redirect('/')->with('alert-success', '刪除成功');
     }
 }
