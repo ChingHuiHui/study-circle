@@ -13,6 +13,8 @@ class Event extends Model
 
     protected $guarded = [];
 
+    protected $dates = ['date'];
+
     public function department()
     {
         return $this->belongsTo(Department::class);

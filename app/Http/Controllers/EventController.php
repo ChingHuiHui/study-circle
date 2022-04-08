@@ -93,11 +93,10 @@ class EventController extends Controller
 
         $attributes = request()->validate([
             'title' => 'required',
-            'date' => 'required',
         ]);
 
 
-        $event->update(array_merge([
+        $event->update(array_merge($attributes, [
             'department_id' => request()->department,
             'body' => request()->body,
             'note' => request()->note,

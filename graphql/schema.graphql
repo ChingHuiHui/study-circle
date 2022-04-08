@@ -1,6 +1,5 @@
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
-scalar DateTime
-    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+scalar DateTimeUtc @scalar(class: "DateTimeUtc")
 
 type Department {
     id: ID!
@@ -13,9 +12,9 @@ type Event {
     body: String!
     title: String!
     note: String!
-    date: DateTime!
-    created_at: DateTime!
-    updated_at: DateTime!
+    date: DateTimeUtc!
+    created_at: DateTimeUtc!
+    updated_at: DateTimeUtc!
 }
 
 "Indicates what fields are available at the top level of a query operation."
@@ -38,6 +37,7 @@ type Query {
     ): [User!]! @paginate(defaultCount: 10)
 
     events: [Event!]! @all
+    departments: [Department!]! @all
 }
 
 type Mutation {
@@ -46,7 +46,7 @@ type Mutation {
         title: String! @rules(apply: ["required"])
         body: String
         note: String
-        date: DateTime!
+        date: DateTimeUtc!
     ): Event @create
 
     updateEvent(
@@ -55,7 +55,7 @@ type Mutation {
         title: String! @rules(apply: ["required"])
         body: String
         note: String
-        date: DateTime!
+        date: DateTimeUtc!
     ): Event @update
 
     deleteEvent(id: ID!): Event @delete
@@ -73,11 +73,11 @@ type User {
     email: String!
 
     "When the email was verified."
-    email_verified_at: DateTime
+    email_verified_at: DateTimeUtc
 
     "When the account was created."
-    created_at: DateTime!
+    created_at: DateTimeUtc!
 
     "When the account was last updated."
-    updated_at: DateTime!
+    updated_at: DateTimeUtc!
 }
